@@ -64,15 +64,20 @@ class _LogInState extends State<LogIn> {
                           children: [
                             const SizedBox(height: 10.0),
                             Container(
-                              height: 100,
-                              width: 100,
-                              decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                  image: AssetImage('images/salespro.jpg'),
-                                  fit: BoxFit.fill
-                                ),
+                              padding: EdgeInsets.symmetric(vertical: 25),
+                              width: 180,
+
+                              child: Image.asset(
+                                'images/ezybills.jpg',
+                                width: 180,
+                                fit: BoxFit.fill,
                               ),
+                              // decoration: const BoxDecoration(
+                              //   shape: BoxShape.circle,
+                              //   image: DecorationImage(
+                              //       image: AssetImage('images/salespro.jpg'),
+                              //       fit: BoxFit.fill),
+                              // ),
                             ),
                             Divider(
                               thickness: 1.0,
@@ -81,7 +86,10 @@ class _LogInState extends State<LogIn> {
                             const SizedBox(height: 10.0),
                             Text(
                               '$appTitle Login Panel',
-                              style: kTextStyle.copyWith(color: kGreyTextColor, fontWeight: FontWeight.bold, fontSize: 21.0),
+                              style: kTextStyle.copyWith(
+                                  color: kGreyTextColor,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 21.0),
                               textAlign: TextAlign.center,
                             ),
                             const SizedBox(height: 10.0),
@@ -108,19 +116,27 @@ class _LogInState extends State<LogIn> {
                                       cursorColor: kTitleColor,
                                       decoration: kInputDecoration.copyWith(
                                         labelText: 'Email',
-                                        labelStyle: kTextStyle.copyWith(color: kTitleColor),
+                                        labelStyle: kTextStyle.copyWith(
+                                            color: kTitleColor),
                                         hintText: 'Enter your email address',
-                                        hintStyle: kTextStyle.copyWith(color: kLitGreyColor),
-                                        contentPadding: const EdgeInsets.all(4.0),
+                                        hintStyle: kTextStyle.copyWith(
+                                            color: kLitGreyColor),
+                                        contentPadding:
+                                            const EdgeInsets.all(4.0),
                                         enabledBorder: const OutlineInputBorder(
                                           borderRadius: BorderRadius.all(
                                             Radius.circular(4.0),
                                           ),
-                                          borderSide: BorderSide(color: kBorderColorTextField, width: 1),
+                                          borderSide: BorderSide(
+                                              color: kBorderColorTextField,
+                                              width: 1),
                                         ),
                                         focusedBorder: const OutlineInputBorder(
-                                          borderRadius: BorderRadius.all(Radius.circular(4.0)),
-                                          borderSide: BorderSide(color: kBorderColorTextField, width: 2),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(4.0)),
+                                          borderSide: BorderSide(
+                                              color: kBorderColorTextField,
+                                              width: 2),
                                         ),
                                       ),
                                       textFieldType: TextFieldType.EMAIL,
@@ -143,20 +159,29 @@ class _LogInState extends State<LogIn> {
                                       cursorColor: kTitleColor,
                                       decoration: kInputDecoration.copyWith(
                                         labelText: 'Password',
-                                        floatingLabelAlignment: FloatingLabelAlignment.start,
-                                        labelStyle: kTextStyle.copyWith(color: kTitleColor),
+                                        floatingLabelAlignment:
+                                            FloatingLabelAlignment.start,
+                                        labelStyle: kTextStyle.copyWith(
+                                            color: kTitleColor),
                                         hintText: 'Enter your password',
-                                        hintStyle: kTextStyle.copyWith(color: kLitGreyColor),
-                                        contentPadding: const EdgeInsets.all(4.0),
+                                        hintStyle: kTextStyle.copyWith(
+                                            color: kLitGreyColor),
+                                        contentPadding:
+                                            const EdgeInsets.all(4.0),
                                         enabledBorder: const OutlineInputBorder(
                                           borderRadius: BorderRadius.all(
                                             Radius.circular(4.0),
                                           ),
-                                          borderSide: BorderSide(color: kBorderColorTextField, width: 1),
+                                          borderSide: BorderSide(
+                                              color: kBorderColorTextField,
+                                              width: 1),
                                         ),
                                         focusedBorder: const OutlineInputBorder(
-                                          borderRadius: BorderRadius.all(Radius.circular(4.0)),
-                                          borderSide: BorderSide(color: kBorderColorTextField, width: 2),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(4.0)),
+                                          borderSide: BorderSide(
+                                              color: kBorderColorTextField,
+                                              width: 2),
                                         ),
                                       ),
                                       textFieldType: TextFieldType.PASSWORD,
@@ -164,11 +189,20 @@ class _LogInState extends State<LogIn> {
                                     const SizedBox(height: 20.0),
                                     ButtonGlobal(
                                       buttontext: 'Login',
-                                      buttonDecoration: kButtonDecoration.copyWith(color: kGreenTextColor, borderRadius: BorderRadius.circular(8.0)),
+                                      buttonDecoration:
+                                          kButtonDecoration.copyWith(
+                                              color: kGreenTextColor,
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0)),
                                       onPressed: (() {
-                                        if (validateAndSave() && emailController.text != kAdminEmail) {
-                                          EasyLoading.showError('Please enter a correct admin email');
-                                        } else if (validateAndSave() && emailController.text == kAdminEmail) {
+                                        if (validateAndSave() &&
+                                            emailController.text !=
+                                                kAdminEmail) {
+                                          EasyLoading.showError(
+                                              'Please enter a correct admin email');
+                                        } else if (validateAndSave() &&
+                                            emailController.text ==
+                                                kAdminEmail) {
                                           loginProvider.signIn(context);
                                         }
                                       }),
@@ -176,11 +210,13 @@ class _LogInState extends State<LogIn> {
                                     const SizedBox(height: 20.0),
                                     Row(
                                       mainAxisSize: MainAxisSize.min,
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       children: [
                                         Expanded(
                                           child: ListTile(
-                                            onTap: () => Navigator.pushNamed(context, ForgotPassword.route),
+                                            onTap: () => Navigator.pushNamed(
+                                                context, ForgotPassword.route),
                                             contentPadding: EdgeInsets.zero,
                                             horizontalTitleGap: 10,
                                             leading: Icon(
@@ -189,7 +225,8 @@ class _LogInState extends State<LogIn> {
                                             ),
                                             title: Text(
                                               'Forgot password?',
-                                              style: kTextStyle.copyWith(color: kTitleColor),
+                                              style: kTextStyle.copyWith(
+                                                  color: kTitleColor),
                                             ),
                                           ),
                                         ),
