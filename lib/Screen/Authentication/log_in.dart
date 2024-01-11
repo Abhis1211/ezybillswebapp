@@ -66,7 +66,6 @@ class _LogInState extends State<LogIn> {
                             Container(
                               padding: EdgeInsets.symmetric(vertical: 25),
                               width: 180,
-
                               child: Image.asset(
                                 'images/ezybills.jpg',
                                 width: 180,

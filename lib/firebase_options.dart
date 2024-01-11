@@ -42,13 +42,13 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBFeMWg8Rewggybbsxs17fkNCzjF8LOLeQ',
-    appId: '1:1058692988933:web:6e1aa008a1f94d34f99c6c',
-    messagingSenderId: '1058692988933',
-    projectId: 'salespro-e3aff',
-    authDomain: 'salespro-e3aff.firebaseapp.com',
-    storageBucket: 'salespro-e3aff.appspot.com',
-    databaseURL: "https://salespro-e3aff-default-rtdb.firebaseio.com",
-    measurementId: "G-M8M2HWBV1Y",
+    apiKey: 'AIzaSyDwCj53nI6AOEYGP_EFXnapJuKCaS1fyhw',
+    appId: '1:1027892655296:web:972bf316020fdfb1d12925',
+    messagingSenderId: '1027892655296',
+    projectId: 'ezybills-33844',
+    authDomain: 'ezybills-33844.firebaseapp.com',
+    storageBucket: 'ezybills-33844.appspot.com',
+    databaseURL: "https://ezybills-33844-default-rtdb.firebaseio.com",
+    measurementId: "G-DPWXXQ6W7L",
   );
 }

@@ -18,6 +18,9 @@ import '../../Provider/homepage_image_provider.dart';
 import '../Screen/Widgets/Constant Data/constant.dart';
 import '../Screen/Widgets/Sidebar/sidebar_widget.dart';
 import '../Screen/Widgets/Topbar/topbar.dart';
+import 'dart:html';
+
+import 'dart:ui' as ui;
 
 class HomepageAdvertising extends StatefulWidget {
   const HomepageAdvertising({Key? key}) : super(key: key);
@@ -66,12 +69,15 @@ class _HomepageAdvertisingState extends State<HomepageAdvertising> {
                           child: Container(
                             width: 100,
                             padding: const EdgeInsets.all(10.0),
-                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(5.0), color: Colors.red),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5.0),
+                                color: Colors.red),
                             child: Column(
                               children: [
                                 Text(
                                   'Cancel',
-                                  style: kTextStyle.copyWith(color: kWhiteTextColor),
+                                  style: kTextStyle.copyWith(
+                                      color: kWhiteTextColor),
                                 ),
                               ],
                             ),
@@ -81,16 +87,24 @@ class _HomepageAdvertisingState extends State<HomepageAdvertising> {
                         GestureDetector(
                           onTap: () async {
                             if (videoLink != '') {
-                              EasyLoading.show(status: 'Loading...', dismissOnTap: false);
-                              HomePageAdvertisingModel data = HomePageAdvertisingModel(imageUrl: videoLink);
-                              final DatabaseReference adRef = FirebaseDatabase.instance.ref().child('Admin Panel').child('Homepage Image');
+                              EasyLoading.show(
+                                  status: 'Loading...', dismissOnTap: false);
+                              HomePageAdvertisingModel data =
+                                  HomePageAdvertisingModel(imageUrl: videoLink);
+                              final DatabaseReference adRef = FirebaseDatabase
+                                  .instance
+                                  .ref()
+                                  .child('Admin Panel')
+                                  .child('Homepage Image');
                               await adRef.push().set(data.toJson());
-                              EasyLoading.showSuccess('Added Successfully', duration: const Duration(milliseconds: 500));
+                              EasyLoading.showSuccess('Added Successfully',
+                                  duration: const Duration(milliseconds: 500));
 
                               ///____provider_refresh____________________________________________
                               ref.refresh(homepageAdvertising);
 
-                              Future.delayed(const Duration(milliseconds: 100), () {
+                              Future.delayed(const Duration(milliseconds: 100),
+                                  () {
                                 Navigator.pop(context);
                               });
                             } else {
@@ -100,12 +114,15 @@ class _HomepageAdvertisingState extends State<HomepageAdvertising> {
                           child: Container(
                             width: 100,
                             padding: const EdgeInsets.all(10.0),
-                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(5.0), color: kBlueTextColor),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5.0),
+                                color: kBlueTextColor),
                             child: Column(
                               children: [
                                 Text(
                                   'Save',
-                                  style: kTextStyle.copyWith(color: kWhiteTextColor),
+                                  style: kTextStyle.copyWith(
+                                      color: kWhiteTextColor),
                                 ),
                               ],
                             ),
@@ -159,7 +176,9 @@ class _HomepageAdvertisingState extends State<HomepageAdvertising> {
                         padding: const EdgeInsets.all(10.0),
                         child: Container(
                           padding: const EdgeInsets.all(20.0),
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0), color: kWhiteTextColor),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10.0),
+                              color: kWhiteTextColor),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -169,7 +188,8 @@ class _HomepageAdvertisingState extends State<HomepageAdvertising> {
                                 padding: const EdgeInsets.all(6),
                                 color: kLitGreyColor,
                                 child: ClipRRect(
-                                  borderRadius: const BorderRadius.all(Radius.circular(12)),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(12)),
                                   child: Container(
                                     width: context.width(),
                                     padding: const EdgeInsets.all(10.0),
@@ -179,20 +199,31 @@ class _HomepageAdvertisingState extends State<HomepageAdvertising> {
                                     child: Column(
                                       children: [
                                         Column(
-                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
                                           children: [
-                                            Icon(MdiIcons.cloudUpload, size: 50.0, color: kLitGreyColor).onTap(() async => await pickAndShowImage()),
+                                            Icon(MdiIcons.cloudUpload,
+                                                    size: 50.0,
+                                                    color: kLitGreyColor)
+                                                .onTap(() async =>
+                                                    await pickAndShowImage()),
                                           ],
                                         ),
                                         const SizedBox(height: 5.0),
                                         RichText(
                                           text: TextSpan(
                                             text: 'Upload an image',
-                                            style: kTextStyle.copyWith(color: kGreenTextColor, fontWeight: FontWeight.bold),
+                                            style: kTextStyle.copyWith(
+                                                color: kGreenTextColor,
+                                                fontWeight: FontWeight.bold),
                                             children: [
                                               TextSpan(
-                                                text: ' or drag & drop PNG, JPG',
-                                                style: kTextStyle.copyWith(color: kGreyTextColor, fontWeight: FontWeight.bold),
+                                                text:
+                                                    ' or drag & drop PNG, JPG',
+                                                style: kTextStyle.copyWith(
+                                                    color: kGreyTextColor,
+                                                    fontWeight:
+                                                        FontWeight.bold),
                                               )
                                             ],
                                           ),
@@ -205,10 +236,13 @@ class _HomepageAdvertisingState extends State<HomepageAdvertising> {
                               const SizedBox(height: 10),
                               bytesFromPicker == null
                                   ? Container(
-                                      decoration: BoxDecoration(border: Border.all(width: 1, color: Colors.black12)),
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                              width: 1, color: Colors.black12)),
                                       height: 150,
                                       width: 150,
-                                      child: const Center(child: Text('No Image')),
+                                      child:
+                                          const Center(child: Text('No Image')),
                                     )
                                   : Image.memory(
                                       bytesFromPicker!,
@@ -228,12 +262,15 @@ class _HomepageAdvertisingState extends State<HomepageAdvertising> {
                             child: Container(
                               width: 100,
                               padding: const EdgeInsets.all(10.0),
-                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(5.0), color: Colors.red),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                  color: Colors.red),
                               child: Column(
                                 children: [
                                   Text(
                                     'Cancel',
-                                    style: kTextStyle.copyWith(color: kWhiteTextColor),
+                                    style: kTextStyle.copyWith(
+                                        color: kWhiteTextColor),
                                   ),
                                 ],
                               ),
@@ -243,19 +280,30 @@ class _HomepageAdvertisingState extends State<HomepageAdvertising> {
                           GestureDetector(
                             onTap: () async {
                               if (bytesFromPicker != null) {
-                                EasyLoading.show(status: 'Loading...', dismissOnTap: false);
-                                var snapshot =
-                                    await FirebaseStorage.instance.ref('Homepage Advertising Storage/${DateTime.now().millisecondsSinceEpoch}').putData(bytesFromPicker!);
+                                EasyLoading.show(
+                                    status: 'Loading...', dismissOnTap: false);
+                                var snapshot = await FirebaseStorage.instance
+                                    .ref(
+                                        'Homepage Advertising Storage/${DateTime.now().millisecondsSinceEpoch}')
+                                    .putData(bytesFromPicker!);
                                 var url = await snapshot.ref.getDownloadURL();
-                                HomePageAdvertisingModel data = HomePageAdvertisingModel(imageUrl: url);
-                                final DatabaseReference adRef = FirebaseDatabase.instance.ref().child('Admin Panel').child('Homepage Image');
+                                HomePageAdvertisingModel data =
+                                    HomePageAdvertisingModel(imageUrl: url);
+                                final DatabaseReference adRef = FirebaseDatabase
+                                    .instance
+                                    .ref()
+                                    .child('Admin Panel')
+                                    .child('Homepage Image');
                                 await adRef.push().set(data.toJson());
-                                EasyLoading.showSuccess('Added Successfully', duration: const Duration(milliseconds: 500));
+                                EasyLoading.showSuccess('Added Successfully',
+                                    duration:
+                                        const Duration(milliseconds: 500));
 
                                 ///____provider_refresh____________________________________________
                                 ref.refresh(homepageAdvertising);
 
-                                Future.delayed(const Duration(milliseconds: 100), () {
+                                Future.delayed(
+                                    const Duration(milliseconds: 100), () {
                                   Navigator.pop(context);
                                 });
                               } else {
@@ -265,12 +313,15 @@ class _HomepageAdvertisingState extends State<HomepageAdvertising> {
                             child: Container(
                               width: 100,
                               padding: const EdgeInsets.all(10.0),
-                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(5.0), color: kBlueTextColor),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                  color: kBlueTextColor),
                               child: Column(
                                 children: [
                                   Text(
                                     'Save',
-                                    style: kTextStyle.copyWith(color: kWhiteTextColor),
+                                    style: kTextStyle.copyWith(
+                                        color: kWhiteTextColor),
                                   ),
                                 ],
                               ),
@@ -287,10 +338,17 @@ class _HomepageAdvertisingState extends State<HomepageAdvertising> {
     );
   }
 
-  Future<void> deleteUrl({required WidgetRef updateRef, required String url}) async {
+  Future<void> deleteUrl(
+      {required WidgetRef updateRef, required String url}) async {
     EasyLoading.show(status: 'Deleting..');
     String imageKey = '';
-    await FirebaseDatabase.instance.ref().child('Admin Panel').child('Homepage Image').orderByKey().get().then((value) async {
+    await FirebaseDatabase.instance
+        .ref()
+        .child('Admin Panel')
+        .child('Homepage Image')
+        .orderByKey()
+        .get()
+        .then((value) async {
       for (var element in value.children) {
         var data = jsonDecode(jsonEncode(element.value));
         if (data['imageUrl'].toString() == url) {
@@ -298,14 +356,16 @@ class _HomepageAdvertisingState extends State<HomepageAdvertising> {
         }
       }
     });
-    DatabaseReference ref = FirebaseDatabase.instance.ref("Admin Panel/Homepage Image/$imageKey");
+    DatabaseReference ref =
+        FirebaseDatabase.instance.ref("Admin Panel/Homepage Image/$imageKey");
     await ref.remove();
     updateRef.refresh(homepageAdvertising);
 
     EasyLoading.showSuccess('Done');
   }
 
-  void editAdvertisingVideo({required WidgetRef updateRef, required String url}) {
+  void editAdvertisingVideo(
+      {required WidgetRef updateRef, required String url}) {
     String videoLink = '';
     showDialog(
       barrierDismissible: false,
@@ -343,12 +403,15 @@ class _HomepageAdvertisingState extends State<HomepageAdvertising> {
                           child: Container(
                             width: 100,
                             padding: const EdgeInsets.all(10.0),
-                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(5.0), color: Colors.red),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5.0),
+                                color: Colors.red),
                             child: Column(
                               children: [
                                 Text(
                                   'Cancel',
-                                  style: kTextStyle.copyWith(color: kWhiteTextColor),
+                                  style: kTextStyle.copyWith(
+                                      color: kWhiteTextColor),
                                 ),
                               ],
                             ),
@@ -360,15 +423,23 @@ class _HomepageAdvertisingState extends State<HomepageAdvertising> {
                             if (videoLink != '') {
                               EasyLoading.show(status: 'Editing');
                               String imageKey = '';
-                              await FirebaseDatabase.instance.ref().child('Admin Panel').child('Homepage Image').orderByKey().get().then((value) async {
+                              await FirebaseDatabase.instance
+                                  .ref()
+                                  .child('Admin Panel')
+                                  .child('Homepage Image')
+                                  .orderByKey()
+                                  .get()
+                                  .then((value) async {
                                 for (var element in value.children) {
-                                  var data = jsonDecode(jsonEncode(element.value));
+                                  var data =
+                                      jsonDecode(jsonEncode(element.value));
                                   if (data['imageUrl'].toString() == url) {
                                     imageKey = element.key.toString();
                                   }
                                 }
                               });
-                              DatabaseReference ref = FirebaseDatabase.instance.ref("Admin Panel/Homepage Image/$imageKey");
+                              DatabaseReference ref = FirebaseDatabase.instance
+                                  .ref("Admin Panel/Homepage Image/$imageKey");
                               await ref.update({
                                 'imageUrl': videoLink,
                               });
@@ -383,12 +454,15 @@ class _HomepageAdvertisingState extends State<HomepageAdvertising> {
                           child: Container(
                             width: 100,
                             padding: const EdgeInsets.all(10.0),
-                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(5.0), color: kBlueTextColor),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5.0),
+                                color: kBlueTextColor),
                             child: Column(
                               children: [
                                 Text(
                                   'Save',
-                                  style: kTextStyle.copyWith(color: kWhiteTextColor),
+                                  style: kTextStyle.copyWith(
+                                      color: kWhiteTextColor),
                                 ),
                               ],
                             ),
@@ -404,7 +478,8 @@ class _HomepageAdvertisingState extends State<HomepageAdvertising> {
     );
   }
 
-  void editAdvertisingImage({required WidgetRef updateRef, required String url}) {
+  void editAdvertisingImage(
+      {required WidgetRef updateRef, required String url}) {
     String imageUrl = url;
 
     showDialog(
@@ -415,7 +490,8 @@ class _HomepageAdvertisingState extends State<HomepageAdvertising> {
           Future<void> uploadFile() async {
             if (kIsWeb) {
               try {
-                Uint8List? bytesFromPicker = await ImagePickerWeb.getImageAsBytes();
+                Uint8List? bytesFromPicker =
+                    await ImagePickerWeb.getImageAsBytes();
                 if (bytesFromPicker!.isNotEmpty) {
                   EasyLoading.show(
                     status: 'Uploading... ',
@@ -423,7 +499,10 @@ class _HomepageAdvertisingState extends State<HomepageAdvertising> {
                   );
                 }
 
-                var snapshot = await FirebaseStorage.instance.ref('Homepage Advertising Storage/${DateTime.now().millisecondsSinceEpoch}').putData(bytesFromPicker);
+                var snapshot = await FirebaseStorage.instance
+                    .ref(
+                        'Homepage Advertising Storage/${DateTime.now().millisecondsSinceEpoch}')
+                    .putData(bytesFromPicker);
                 var url = await snapshot.ref.getDownloadURL();
                 EasyLoading.showSuccess('Upload Successful!');
                 setState1(() {
@@ -431,7 +510,8 @@ class _HomepageAdvertisingState extends State<HomepageAdvertising> {
                 });
               } on FirebaseException catch (e) {
                 EasyLoading.dismiss();
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.code.toString())));
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(SnackBar(content: Text(e.code.toString())));
               }
             }
           }
@@ -453,7 +533,9 @@ class _HomepageAdvertisingState extends State<HomepageAdvertising> {
                         padding: const EdgeInsets.all(10.0),
                         child: Container(
                           padding: const EdgeInsets.all(20.0),
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0), color: kWhiteTextColor),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10.0),
+                              color: kWhiteTextColor),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -463,7 +545,8 @@ class _HomepageAdvertisingState extends State<HomepageAdvertising> {
                                 padding: const EdgeInsets.all(6),
                                 color: kLitGreyColor,
                                 child: ClipRRect(
-                                  borderRadius: const BorderRadius.all(Radius.circular(12)),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(12)),
                                   child: Container(
                                     width: context.width(),
                                     padding: const EdgeInsets.all(10.0),
@@ -473,20 +556,30 @@ class _HomepageAdvertisingState extends State<HomepageAdvertising> {
                                     child: Column(
                                       children: [
                                         Column(
-                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
                                           children: [
-                                            Icon(MdiIcons.cloudUpload, size: 50.0, color: kLitGreyColor).onTap(() => uploadFile()),
+                                            Icon(MdiIcons.cloudUpload,
+                                                    size: 50.0,
+                                                    color: kLitGreyColor)
+                                                .onTap(() => uploadFile()),
                                           ],
                                         ),
                                         const SizedBox(height: 5.0),
                                         RichText(
                                           text: TextSpan(
                                             text: 'Upload an image',
-                                            style: kTextStyle.copyWith(color: kGreenTextColor, fontWeight: FontWeight.bold),
+                                            style: kTextStyle.copyWith(
+                                                color: kGreenTextColor,
+                                                fontWeight: FontWeight.bold),
                                             children: [
                                               TextSpan(
-                                                text: ' or drag & drop PNG, JPG',
-                                                style: kTextStyle.copyWith(color: kGreyTextColor, fontWeight: FontWeight.bold),
+                                                text:
+                                                    ' or drag & drop PNG, JPG',
+                                                style: kTextStyle.copyWith(
+                                                    color: kGreyTextColor,
+                                                    fontWeight:
+                                                        FontWeight.bold),
                                               )
                                             ],
                                           ),
@@ -499,10 +592,13 @@ class _HomepageAdvertisingState extends State<HomepageAdvertising> {
                               const SizedBox(height: 10),
                               imageUrl == ''
                                   ? Container(
-                                      decoration: BoxDecoration(border: Border.all(width: 1, color: Colors.black12)),
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                              width: 1, color: Colors.black12)),
                                       height: 150,
                                       width: 150,
-                                      child: const Center(child: Text('No Image')),
+                                      child:
+                                          const Center(child: Text('No Image')),
                                     )
                                   : Image.network(
                                       imageUrl,
@@ -522,12 +618,15 @@ class _HomepageAdvertisingState extends State<HomepageAdvertising> {
                             child: Container(
                               width: 100,
                               padding: const EdgeInsets.all(10.0),
-                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(5.0), color: Colors.red),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                  color: Colors.red),
                               child: Column(
                                 children: [
                                   Text(
                                     'Cancel',
-                                    style: kTextStyle.copyWith(color: kWhiteTextColor),
+                                    style: kTextStyle.copyWith(
+                                        color: kWhiteTextColor),
                                   ),
                                 ],
                               ),
@@ -539,15 +638,24 @@ class _HomepageAdvertisingState extends State<HomepageAdvertising> {
                               if (imageUrl != '') {
                                 EasyLoading.show(status: 'Editing');
                                 String imageKey = '';
-                                await FirebaseDatabase.instance.ref().child('Admin Panel').child('Homepage Image').orderByKey().get().then((value) async {
+                                await FirebaseDatabase.instance
+                                    .ref()
+                                    .child('Admin Panel')
+                                    .child('Homepage Image')
+                                    .orderByKey()
+                                    .get()
+                                    .then((value) async {
                                   for (var element in value.children) {
-                                    var data = jsonDecode(jsonEncode(element.value));
+                                    var data =
+                                        jsonDecode(jsonEncode(element.value));
                                     if (data['imageUrl'].toString() == url) {
                                       imageKey = element.key.toString();
                                     }
                                   }
                                 });
-                                DatabaseReference ref = FirebaseDatabase.instance.ref("Admin Panel/Homepage Image/$imageKey");
+                                DatabaseReference ref =
+                                    FirebaseDatabase.instance.ref(
+                                        "Admin Panel/Homepage Image/$imageKey");
                                 await ref.update({
                                   'imageUrl': imageUrl,
                                 });
@@ -556,7 +664,8 @@ class _HomepageAdvertisingState extends State<HomepageAdvertising> {
                                 ///____provider_refresh____________________________________________
                                 updateRef.refresh(homepageAdvertising);
 
-                                Future.delayed(const Duration(milliseconds: 100), () {
+                                Future.delayed(
+                                    const Duration(milliseconds: 100), () {
                                   Navigator.pop(context);
                                 });
                               } else {
@@ -566,12 +675,15 @@ class _HomepageAdvertisingState extends State<HomepageAdvertising> {
                             child: Container(
                               width: 100,
                               padding: const EdgeInsets.all(10.0),
-                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(5.0), color: kBlueTextColor),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                  color: kBlueTextColor),
                               child: Column(
                                 children: [
                                   Text(
                                     'Save',
-                                    style: kTextStyle.copyWith(color: kWhiteTextColor),
+                                    style: kTextStyle.copyWith(
+                                        color: kWhiteTextColor),
                                   ),
                                 ],
                               ),
@@ -624,7 +736,9 @@ class _HomepageAdvertisingState extends State<HomepageAdvertising> {
                             padding: const EdgeInsets.all(20.0),
                             child: Container(
                               padding: const EdgeInsets.all(10.0),
-                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0), color: kWhiteTextColor),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  color: kWhiteTextColor),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -633,21 +747,31 @@ class _HomepageAdvertisingState extends State<HomepageAdvertising> {
                                     children: [
                                       Text(
                                         'Homepage Advertising',
-                                        style: kTextStyle.copyWith(color: kTitleColor, fontSize: 22, fontWeight: FontWeight.bold),
+                                        style: kTextStyle.copyWith(
+                                            color: kTitleColor,
+                                            fontSize: 22,
+                                            fontWeight: FontWeight.bold),
                                       ),
                                       const Spacer(),
                                       Row(
                                         children: [
                                           GestureDetector(
-                                            onTap: (() => newVideoAdd(ref: ref)),
+                                            onTap: (() =>
+                                                newVideoAdd(ref: ref)),
                                             child: Container(
-                                              padding: const EdgeInsets.all(5.0),
-                                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(5.0), color: kBlueTextColor),
+                                              padding:
+                                                  const EdgeInsets.all(5.0),
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          5.0),
+                                                  color: kBlueTextColor),
                                               child: Column(
                                                 children: [
                                                   Text(
                                                     'Add New Video',
-                                                    style: kTextStyle.copyWith(color: kWhiteTextColor),
+                                                    style: kTextStyle.copyWith(
+                                                        color: kWhiteTextColor),
                                                   ),
                                                 ],
                                               ),
@@ -655,15 +779,22 @@ class _HomepageAdvertisingState extends State<HomepageAdvertising> {
                                           ),
                                           const SizedBox(width: 10),
                                           GestureDetector(
-                                            onTap: (() => newImageUpload(ref: ref)),
+                                            onTap: (() =>
+                                                newImageUpload(ref: ref)),
                                             child: Container(
-                                              padding: const EdgeInsets.all(5.0),
-                                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(5.0), color: kBlueTextColor),
+                                              padding:
+                                                  const EdgeInsets.all(5.0),
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          5.0),
+                                                  color: kBlueTextColor),
                                               child: Column(
                                                 children: [
                                                   Text(
                                                     'Add New Image',
-                                                    style: kTextStyle.copyWith(color: kWhiteTextColor),
+                                                    style: kTextStyle.copyWith(
+                                                        color: kWhiteTextColor),
                                                   ),
                                                 ],
                                               ),
@@ -675,7 +806,8 @@ class _HomepageAdvertisingState extends State<HomepageAdvertising> {
                                   ),
 
                                   const SizedBox(height: 10.0),
-                                  const Divider(height: 1, color: Colors.black12),
+                                  const Divider(
+                                      height: 1, color: Colors.black12),
 
                                   const SizedBox(height: 10.0),
 
@@ -684,24 +816,33 @@ class _HomepageAdvertisingState extends State<HomepageAdvertising> {
                                       ListView.builder(
                                         shrinkWrap: true,
                                         itemCount: homepageAd.length,
-                                        itemBuilder: (BuildContext context, int index) {
-                                          if (homepageAd[index].imageUrl.contains('https://firebasestorage.googleapis.com')) {
+                                        itemBuilder:
+                                            (BuildContext context, int index) {
+                                          if (homepageAd[index].imageUrl.contains(
+                                              'https://firebasestorage.googleapis.com')) {
                                             return Row(
                                               mainAxisSize: MainAxisSize.min,
                                               children: [
                                                 Text('${index + 1}.'),
                                                 Padding(
-                                                  padding: const EdgeInsets.all(20.0),
+                                                  padding: const EdgeInsets.all(
+                                                      20.0),
                                                   child: SizedBox(
-                                                    height: 120,
-                                                    width: 200,
-                                                    child: Image(
-                                                      image: NetworkImage(
-                                                        homepageAd[index].imageUrl,
+                                                      height: 120,
+                                                      width: 200,
+                                                      child: MyImage(
+                                                        imageUrls:
+                                                            homepageAd[index]
+                                                                .imageUrl,
+                                                      )
+
+                                                      // Image(
+                                                      //   image: NetworkImage(
+                                                      //     homepageAd[index].imageUrl,
+                                                      //   ),
+                                                      //   fit: BoxFit.cover,
+                                                      // ),
                                                       ),
-                                                      fit: BoxFit.cover,
-                                                    ),
-                                                  ),
                                                 ),
                                                 Row(
                                                   children: [
@@ -711,7 +852,8 @@ class _HomepageAdvertisingState extends State<HomepageAdvertising> {
                                                       ),
                                                       onPressed: () {
                                                         editAdvertisingImage(
-                                                          url: homepageAd[index].imageUrl,
+                                                          url: homepageAd[index]
+                                                              .imageUrl,
                                                           updateRef: ref,
                                                         );
                                                       },
@@ -726,32 +868,55 @@ class _HomepageAdvertisingState extends State<HomepageAdvertising> {
                                                       ),
                                                       onPressed: () {
                                                         showDialog(
-                                                            barrierDismissible: false,
+                                                            barrierDismissible:
+                                                                false,
                                                             context: context,
-                                                            builder: (BuildContext dialogContext) {
+                                                            builder: (BuildContext
+                                                                dialogContext) {
                                                               return Center(
-                                                                child: Container(
-                                                                  decoration: const BoxDecoration(
-                                                                    color: Colors.white,
-                                                                    borderRadius: BorderRadius.all(
-                                                                      Radius.circular(15),
+                                                                child:
+                                                                    Container(
+                                                                  decoration:
+                                                                      const BoxDecoration(
+                                                                    color: Colors
+                                                                        .white,
+                                                                    borderRadius:
+                                                                        BorderRadius
+                                                                            .all(
+                                                                      Radius.circular(
+                                                                          15),
                                                                     ),
                                                                   ),
-                                                                  child: Padding(
-                                                                    padding: const EdgeInsets.all(20.0),
-                                                                    child: Column(
-                                                                      mainAxisSize: MainAxisSize.min,
-                                                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                                                      mainAxisAlignment: MainAxisAlignment.center,
+                                                                  child:
+                                                                      Padding(
+                                                                    padding: const EdgeInsets
+                                                                            .all(
+                                                                        20.0),
+                                                                    child:
+                                                                        Column(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .min,
+                                                                      crossAxisAlignment:
+                                                                          CrossAxisAlignment
+                                                                              .center,
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .center,
                                                                       children: [
                                                                         const Text(
                                                                           'Are you want to delete this advertising?',
-                                                                          style: TextStyle(fontSize: 22),
+                                                                          style:
+                                                                              TextStyle(fontSize: 22),
                                                                         ),
-                                                                        const SizedBox(height: 30),
+                                                                        const SizedBox(
+                                                                            height:
+                                                                                30),
                                                                         Row(
-                                                                          mainAxisAlignment: MainAxisAlignment.center,
-                                                                          mainAxisSize: MainAxisSize.min,
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.center,
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.min,
                                                                           children: [
                                                                             GestureDetector(
                                                                               child: Container(
@@ -812,25 +977,31 @@ class _HomepageAdvertisingState extends State<HomepageAdvertising> {
                                               ],
                                             );
                                           } else {
-                                            YoutubePlayerController videoController = YoutubePlayerController(
+                                            YoutubePlayerController
+                                                videoController =
+                                                YoutubePlayerController(
                                               flags: const YoutubePlayerFlags(
                                                 autoPlay: false,
                                                 mute: false,
                                               ),
-                                              initialVideoId: homepageAd[index].imageUrl,
+                                              initialVideoId:
+                                                  homepageAd[index].imageUrl,
                                             );
                                             return Row(
                                               mainAxisSize: MainAxisSize.min,
                                               children: [
                                                 Text('${index + 1}.'),
                                                 Padding(
-                                                  padding: const EdgeInsets.all(20.0),
+                                                  padding: const EdgeInsets.all(
+                                                      20.0),
                                                   child: SizedBox(
                                                     height: 120,
                                                     width: 200,
                                                     child: YoutubePlayer(
-                                                      controller: videoController,
-                                                      showVideoProgressIndicator: true,
+                                                      controller:
+                                                          videoController,
+                                                      showVideoProgressIndicator:
+                                                          true,
                                                       onReady: () {},
                                                     ),
                                                   ),
@@ -843,7 +1014,8 @@ class _HomepageAdvertisingState extends State<HomepageAdvertising> {
                                                       ),
                                                       onPressed: () {
                                                         editAdvertisingVideo(
-                                                          url: homepageAd[index].imageUrl,
+                                                          url: homepageAd[index]
+                                                              .imageUrl,
                                                           updateRef: ref,
                                                         );
                                                       },
@@ -858,32 +1030,55 @@ class _HomepageAdvertisingState extends State<HomepageAdvertising> {
                                                       ),
                                                       onPressed: () {
                                                         showDialog(
-                                                            barrierDismissible: false,
+                                                            barrierDismissible:
+                                                                false,
                                                             context: context,
-                                                            builder: (BuildContext dialogContext) {
+                                                            builder: (BuildContext
+                                                                dialogContext) {
                                                               return Center(
-                                                                child: Container(
-                                                                  decoration: const BoxDecoration(
-                                                                    color: Colors.white,
-                                                                    borderRadius: BorderRadius.all(
-                                                                      Radius.circular(15),
+                                                                child:
+                                                                    Container(
+                                                                  decoration:
+                                                                      const BoxDecoration(
+                                                                    color: Colors
+                                                                        .white,
+                                                                    borderRadius:
+                                                                        BorderRadius
+                                                                            .all(
+                                                                      Radius.circular(
+                                                                          15),
                                                                     ),
                                                                   ),
-                                                                  child: Padding(
-                                                                    padding: const EdgeInsets.all(20.0),
-                                                                    child: Column(
-                                                                      mainAxisSize: MainAxisSize.min,
-                                                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                                                      mainAxisAlignment: MainAxisAlignment.center,
+                                                                  child:
+                                                                      Padding(
+                                                                    padding: const EdgeInsets
+                                                                            .all(
+                                                                        20.0),
+                                                                    child:
+                                                                        Column(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .min,
+                                                                      crossAxisAlignment:
+                                                                          CrossAxisAlignment
+                                                                              .center,
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .center,
                                                                       children: [
                                                                         const Text(
                                                                           'Are you want to delete this advertising?',
-                                                                          style: TextStyle(fontSize: 22),
+                                                                          style:
+                                                                              TextStyle(fontSize: 22),
                                                                         ),
-                                                                        const SizedBox(height: 30),
+                                                                        const SizedBox(
+                                                                            height:
+                                                                                30),
                                                                         Row(
-                                                                          mainAxisAlignment: MainAxisAlignment.center,
-                                                                          mainAxisSize: MainAxisSize.min,
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.center,
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.min,
                                                                           children: [
                                                                             GestureDetector(
                                                                               child: Container(
@@ -968,6 +1163,25 @@ class _HomepageAdvertisingState extends State<HomepageAdvertising> {
           });
         },
       ),
+    );
+  }
+}
+
+class MyImage extends StatelessWidget {
+  final imageUrls;
+
+  const MyImage({super.key, required this.imageUrls});
+  @override
+  Widget build(BuildContext context) {
+    String imageUrl = imageUrls;
+    // https://github.com/flutter/flutter/issues/41563
+    // ignore: undefined_prefixed_name
+    ui.platformViewRegistry.registerViewFactory(
+      imageUrl,
+      (int _) => ImageElement()..src = imageUrl,
+    );
+    return HtmlElementView(
+      viewType: imageUrl,
     );
   }
 }
