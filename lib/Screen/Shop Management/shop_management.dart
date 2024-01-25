@@ -314,6 +314,9 @@ class _ShopManagementState extends State<ShopManagement> {
                                         label: Text('METHOD'),
                                       ),
                                       DataColumn(
+                                        label: Text('Created Date'),
+                                      ),
+                                      DataColumn(
                                         label: Text('ACTION'),
                                       ),
                                     ],
@@ -360,6 +363,11 @@ class _ShopManagementState extends State<ShopManagement> {
                                           DataCell(
                                             Text(sellerInfo[index]
                                                     .subscriptionMethod ??
+                                                ''),
+                                          ),
+                                          DataCell(
+                                            Text(sellerInfo[index]
+                                                    .created_date ??
                                                 ''),
                                           ),
                                           DataCell(
