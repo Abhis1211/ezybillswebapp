@@ -29,6 +29,7 @@ class SellerInfoModel {
     subscriptionMethod = json['subscriptionMethod'];
     activeStatus = json['activeStatus'];
     profileSetup = json['profileSetup'];
+    email = json['email'];
     created_date = json['created_date'];
   }
   dynamic phoneNumber;
