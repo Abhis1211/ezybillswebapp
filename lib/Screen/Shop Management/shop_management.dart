@@ -379,11 +379,15 @@ class _ShopManagementState extends State<ShopManagement> {
                                               itemBuilder: (BuildContext bc) =>
                                                   [
                                                 PopupMenuItem(
-                                                  child: GestureDetector(
+                                                  padding: EdgeInsets.zero,
+                                                  child: InkWell(
                                                     onTap: (() =>
                                                         showViewShopPopUp(
                                                             sellerInfo[index])),
                                                     child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
                                                       children: [
                                                         const Icon(
                                                             FeatherIcons.eye,
@@ -391,19 +395,25 @@ class _ShopManagementState extends State<ShopManagement> {
                                                             color: kTitleColor),
                                                         const SizedBox(
                                                             width: 4.0),
-                                                        Text(
-                                                          'View',
-                                                          style: kTextStyle
-                                                              .copyWith(
-                                                                  color:
-                                                                      kTitleColor),
+                                                        Padding(
+                                                          padding: EdgeInsets
+                                                              .symmetric(
+                                                                  vertical: 10),
+                                                          child: Text(
+                                                            'View',
+                                                            style: kTextStyle
+                                                                .copyWith(
+                                                                    color:
+                                                                        kTitleColor),
+                                                          ),
                                                         ),
                                                       ],
                                                     ),
                                                   ),
                                                 ),
                                                 PopupMenuItem(
-                                                  child: GestureDetector(
+                                                  padding: EdgeInsets.zero,
+                                                  child: InkWell(
                                                     onTap: () async {
                                                       EasyLoading.show(
                                                           status: 'Loading...',
@@ -489,6 +499,9 @@ class _ShopManagementState extends State<ShopManagement> {
                                                       }
                                                     },
                                                     child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
                                                       children: [
                                                         Icon(
                                                             sellerInfo[index]
@@ -500,23 +513,29 @@ class _ShopManagementState extends State<ShopManagement> {
                                                             size: 18.0,
                                                             color: kTitleColor),
                                                         SizedBox(width: 4.0),
-                                                        Text(
-                                                          sellerInfo[index]
-                                                                      .activeStatus ==
-                                                                  0
-                                                              ? 'Deactive'
-                                                              : "Active",
-                                                          style: kTextStyle
-                                                              .copyWith(
-                                                                  color:
-                                                                      kTitleColor),
+                                                        Padding(
+                                                          padding: EdgeInsets
+                                                              .symmetric(
+                                                                  vertical: 10),
+                                                          child: Text(
+                                                            sellerInfo[index]
+                                                                        .activeStatus ==
+                                                                    0
+                                                                ? 'Deactive'
+                                                                : "Active",
+                                                            style: kTextStyle
+                                                                .copyWith(
+                                                                    color:
+                                                                        kTitleColor),
+                                                          ),
                                                         ),
                                                       ],
                                                     ),
                                                   ),
                                                 ),
                                                 PopupMenuItem(
-                                                  child: GestureDetector(
+                                                  padding: EdgeInsets.zero,
+                                                  child: InkWell(
                                                     onTap: () async {
                                                       await deleteUser(
                                                           email:
@@ -539,18 +558,26 @@ class _ShopManagementState extends State<ShopManagement> {
                                                     //                 ref);
                                                     //       },
                                                     child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
                                                       children: [
                                                         const Icon(Icons.delete,
                                                             size: 18.0,
                                                             color: kTitleColor),
                                                         const SizedBox(
                                                             width: 4.0),
-                                                        Text(
-                                                          'Delete',
-                                                          style: kTextStyle
-                                                              .copyWith(
-                                                                  color:
-                                                                      kTitleColor),
+                                                        Padding(
+                                                          padding: EdgeInsets
+                                                              .symmetric(
+                                                                  vertical: 10),
+                                                          child: Text(
+                                                            'Delete',
+                                                            style: kTextStyle
+                                                                .copyWith(
+                                                                    color:
+                                                                        kTitleColor),
+                                                          ),
                                                         ),
                                                       ],
                                                     ),

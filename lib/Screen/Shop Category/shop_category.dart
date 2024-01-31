@@ -325,7 +325,7 @@ class _ShopCategoryState extends State<ShopCategory> {
                                               padding: EdgeInsets.zero,
                                               itemBuilder: (BuildContext bc) => [
                                                 PopupMenuItem(
-                                                  child: GestureDetector(
+                                                  child: InkWell(
                                                     onTap: (() => showViewCategoryPopUP(
                                                           categoryList[index],
                                                         )),
@@ -342,7 +342,7 @@ class _ShopCategoryState extends State<ShopCategory> {
                                                   ),
                                                 ),
                                                 PopupMenuItem(
-                                                  child: GestureDetector(
+                                                  child: InkWell(
                                                     onTap: (() => showEditCategory(categoryList[index])),
                                                     child: Row(
                                                       children: [
@@ -357,7 +357,7 @@ class _ShopCategoryState extends State<ShopCategory> {
                                                   ),
                                                 ),
                                                 PopupMenuItem(
-                                                  child: GestureDetector(
+                                                  child: InkWell(
                                                     onTap: categoryList.length <= 1
                                                         ? () {
                                                             EasyLoading.showError('You have to keep one category');
