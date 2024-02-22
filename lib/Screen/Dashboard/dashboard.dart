@@ -1,18 +1,17 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:salespro_saas_admin/Provider/seller_info_provider.dart';
-import 'package:salespro_saas_admin/model/seller_info_model.dart';
-
-import '../../Provider/subacription_plan_provider.dart';
-import '../../model/subscription_plan_model.dart';
 import '../../responsive.dart' as res;
+import 'package:flutter/material.dart';
+import '../Widgets/Topbar/topbar.dart';
 import '../Widgets/Constant Data/constant.dart';
 import '../Widgets/Sidebar/sidebar_widget.dart';
+import '../../model/subscription_plan_model.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../Provider/subacription_plan_provider.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../Widgets/Table Widgets/Dashboard/dashboard_table.dart';
+import 'package:salespro_saas_admin/model/seller_info_model.dart';
 import '../Widgets/Table Widgets/Total Count/total_count_widget.dart';
-import '../Widgets/Topbar/topbar.dart';
+import 'package:salespro_saas_admin/Provider/seller_info_provider.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class MtDashboard extends StatefulWidget {
   const MtDashboard({Key? key}) : super(key: key);
@@ -37,10 +36,14 @@ class _MtDashboardState extends State<MtDashboard> {
   void initState() {
     getData();
     super.initState();
-    for (int i = 0; i < DateTime(currentDate.year, currentDate.month + 1, 0).day; i++) {
+    for (int i = 0;
+        i < DateTime(currentDate.year, currentDate.month + 1, 0).day;
+        i++) {
       everyDayOfCurrentMonth.add(0);
     }
-    for (int i = 0; i < DateTime(currentDate.year, currentDate.month + 1, 0).day; i++) {
+    for (int i = 0;
+        i < DateTime(currentDate.year, currentDate.month + 1, 0).day;
+        i++) {
       everyDay.add(0);
     }
     print('tota in${monthly}');
@@ -68,7 +71,20 @@ class _MtDashboardState extends State<MtDashboard> {
   List<SellerInfoModel> shopList = [];
   List<SellerInfoModel> newUser = [];
   int newUserOfCurrentYear = 0;
-  List<double> newUserMonthlyOfCurrentYear = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  List<double> newUserMonthlyOfCurrentYear = [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ];
   List<SellerInfoModel> newUser30Days = [];
   List<SellerInfoModel> previousMonthRegistration = [];
 
@@ -92,8 +108,10 @@ class _MtDashboardState extends State<MtDashboard> {
             ),
             Consumer(
               builder: (_, ref, watch) {
-                AsyncValue<List<SellerInfoModel>> infoList = ref.watch(sellerInfoProvider);
-                AsyncValue<List<SubscriptionPlanModel>> subsList = ref.watch(subscriptionPlanProvider);
+                AsyncValue<List<SellerInfoModel>> infoList =
+                    ref.watch(sellerInfoProvider);
+                AsyncValue<List<SubscriptionPlanModel>> subsList =
+                    ref.watch(subscriptionPlanProvider);
                 return infoList.when(data: (infoList) {
                   DateTime t = DateTime.now();
                   free = [];
@@ -110,32 +128,48 @@ class _MtDashboardState extends State<MtDashboard> {
                       }
                       //______________________//////__________
 
-                      final subscriptionDate = DateTime.parse(element.subscriptionDate ?? (element.subscriptionDate.toString()));
+                      final subscriptionDate = DateTime.parse(
+                          element.subscriptionDate ??
+                              (element.subscriptionDate.toString()));
                       if (subscriptionDate.isAfter(sevenDays)) {
                         newUser.add(element);
                       }
                       if (subscriptionDate.isAfter(firstDayOfCurrentYear)) {
                         newUserOfCurrentYear++;
-                        newUserMonthlyOfCurrentYear[subscriptionDate.month - 1]++;
+                        newUserMonthlyOfCurrentYear[
+                            subscriptionDate.month - 1]++;
                         if (subscriptionDate.isAfter(firstDayOfCurrentMonth)) {
                           newUser30Days.add(element);
                           everyDayOfCurrentMonth[subscriptionDate.day - 1]++;
                         }
-                        if (subscriptionDate.isAfter(firstDayOfPreviousMonth) && subscriptionDate.isBefore(firstDayOfCurrentMonth)) {
+                        if (subscriptionDate.isAfter(firstDayOfPreviousMonth) &&
+                            subscriptionDate.isBefore(firstDayOfCurrentMonth)) {
                           previousMonthRegistration.add(element);
                         }
                       }
-                      if (DateTime.parse(element.subscriptionDate.toString()).difference(t).inHours.abs() <= 24) {
+                      if (DateTime.parse(element.subscriptionDate.toString())
+                              .difference(t)
+                              .inHours
+                              .abs() <=
+                          24) {
                         newReg++;
                         todayRegistration.add(element);
                       }
                       if (element.subscriptionName == 'Monthly') {
-                        if (DateTime.parse(element.subscriptionDate.toString()).difference(t).inDays.abs() >= 23) {
+                        if (DateTime.parse(element.subscriptionDate.toString())
+                                .difference(t)
+                                .inDays
+                                .abs() >=
+                            23) {
                           expiredList.add(element);
                         }
                       }
                       if (element.subscriptionName == 'Yearly') {
-                        if (DateTime.parse(element.subscriptionDate.toString()).difference(t).inDays.abs() >= 358) {
+                        if (DateTime.parse(element.subscriptionDate.toString())
+                                .difference(t)
+                                .inDays
+                                .abs() >=
+                            358) {
                           expiredList.add(element);
                         }
                       }
@@ -156,35 +190,51 @@ class _MtDashboardState extends State<MtDashboard> {
                     for (var element in subSnap) {
                       for (var sub in infoList) {
                         if (element.subscriptionName == sub.subscriptionName) {
-                          final subscriptionDate = DateTime.tryParse(sub.subscriptionDate.toString()) ?? DateTime.now();
+                          final subscriptionDate = DateTime.tryParse(
+                                  sub.subscriptionDate.toString()) ??
+                              DateTime.now();
 
                           if (subscriptionDate.isAfter(firstDayOfCurrentYear)) {
-                            totalIncomeOfCurrentYear += element.subscriptionPrice;
-                            everyMonthOfYear[subscriptionDate.month - 1] += element.subscriptionPrice;
-                            everyDay[subscriptionDate.day - 1] += element.subscriptionPrice;
+                            totalIncomeOfCurrentYear +=
+                                element.subscriptionPrice;
+                            everyMonthOfYear[subscriptionDate.month - 1] +=
+                                element.subscriptionPrice;
+                            everyDay[subscriptionDate.day - 1] +=
+                                element.subscriptionPrice;
 
                             subOfCurrentYear.add(element);
 
-                            if (subscriptionDate.isAfter(firstDayOfCurrentMonth)) {
-                              totalIncomeOfCurrentMonth += element.subscriptionPrice;
+                            if (subscriptionDate
+                                .isAfter(firstDayOfCurrentMonth)) {
+                              totalIncomeOfCurrentMonth +=
+                                  element.subscriptionPrice;
                               subOfCurrentMonth.add(element);
                             }
 
-                            if (subscriptionDate.isAfter(firstDayOfPreviousMonth) && subscriptionDate.isBefore(firstDayOfCurrentMonth)) {
-                              totalIncomeOfLastMonth += element.subscriptionPrice;
+                            if (subscriptionDate
+                                    .isAfter(firstDayOfPreviousMonth) &&
+                                subscriptionDate
+                                    .isBefore(firstDayOfCurrentMonth)) {
+                              totalIncomeOfLastMonth +=
+                                  element.subscriptionPrice;
                               subOfLastMonth.add(element);
                             }
-                            if (subscriptionDate.isAfter(firstDayOfPreviousYear) && subscriptionDate.isBefore(firstDayOfCurrentYear)) {
-                              totalIncomeOfPreviousYear += element.subscriptionPrice;
+                            if (subscriptionDate
+                                    .isAfter(firstDayOfPreviousYear) &&
+                                subscriptionDate
+                                    .isBefore(firstDayOfCurrentYear)) {
+                              totalIncomeOfPreviousYear +=
+                                  element.subscriptionPrice;
                               subOfLastYear.add(element);
                             }
                           }
                         }
                       }
-
                     }
                     return SizedBox(
-                      width: MediaQuery.of(context).size.width < 1275 ? 1275 - 240 : MediaQuery.of(context).size.width - 240,
+                      width: MediaQuery.of(context).size.width < 1275
+                          ? 1275 - 240
+                          : MediaQuery.of(context).size.width - 240,
                       child: SingleChildScrollView(
                         child: Column(
                           children: [
@@ -222,48 +272,51 @@ class _MtDashboardState extends State<MtDashboard> {
                                   const SizedBox(width: 10.0),
                                   TotalCount(
                                     icon: FontAwesomeIcons.trophy,
-                                    title: 'Free Plan User',
+                                    title: 'Total Customer',
                                     count: numberOfFree.toString(),
                                     backgroundColor: const Color(0xFFCDFFDE),
                                     iconBgColor: const Color(0xFF2EE34D),
                                   ),
                                   const SizedBox(width: 10.0),
-                                  TotalCount(
-                                    icon: MdiIcons.crown,
-                                    title: 'Monthly Plan User',
-                                    count: monthly.toString(),
-                                    backgroundColor: const Color(0xFFEFE1FF),
-                                    iconBgColor: const Color(0xFFB671FF),
-                                  ),
-                                  const SizedBox(width: 10.0),
-                                  TotalCount(
-                                    icon: FontAwesomeIcons.crown,
-                                    title: 'Yearly User Plan ',
-                                    count: yearly.toString(),
-                                    backgroundColor: const Color(0xFFFFE1E1),
-                                    iconBgColor: const Color(0xFFFF436C),
-                                  ),
+                                  // TotalCount(
+                                  //   icon: MdiIcons.crown,
+                                  //   title: 'Monthly Plan User',
+                                  //   count: monthly.toString(),
+                                  //   backgroundColor: const Color(0xFFEFE1FF),
+                                  //   iconBgColor: const Color(0xFFB671FF),
+                                  // ),
+                                  // const SizedBox(width: 10.0),
+                                  // TotalCount(
+                                  //   icon: FontAwesomeIcons.crown,
+                                  //   title: 'Yearly User Plan ',
+                                  //   count: yearly.toString(),
+                                  //   backgroundColor: const Color(0xFFFFE1E1),
+                                  //   iconBgColor: const Color(0xFFFF436C),
+                                  // ),
                                 ],
                               ),
                             ),
                             // Dashboard Table
                             Padding(
-                              padding: const EdgeInsets.only(left: 20.0, right: 20),
+                              padding:
+                                  const EdgeInsets.only(left: 20.0, right: 20),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Expanded(
                                       child: TopSellingStore(
-                                        todayReg: todayRegistration,
-                                      )),
+                                    todayReg: todayRegistration,
+                                  )),
                                   const SizedBox(width: 20.0),
                                   Expanded(
                                       child: YearlySubscribed(
-                                        lifeTimeSeller: yearlySubscribed,
-                                      )),
+                                    lifeTimeSeller: yearlySubscribed,
+                                  )),
                                   const SizedBox(width: 20.0),
-                                  Expanded(child: ExpiredShop(expiredShop: expiredList))
+                                  Expanded(
+                                      child:
+                                          ExpiredShop(expiredShop: expiredList))
                                 ],
                               ),
                             ),
@@ -273,11 +326,14 @@ class _MtDashboardState extends State<MtDashboard> {
                               child: Row(
                                 children: [
                                   Expanded(
-                                    flex:3,
+                                    flex: 3,
                                     child: StatisticsData(
-                                      totalIncomeCurrentMonths: totalIncomeOfCurrentMonth,
-                                      totalIncomeLastMonth: totalIncomeOfLastMonth,
-                                      totalIncomeCurrentYear: totalIncomeOfCurrentYear,
+                                      totalIncomeCurrentMonths:
+                                          totalIncomeOfCurrentMonth,
+                                      totalIncomeLastMonth:
+                                          totalIncomeOfLastMonth,
+                                      totalIncomeCurrentYear:
+                                          totalIncomeOfCurrentYear,
                                       allMonthData: everyMonthOfYear,
                                       allDay: everyDay,
                                       totalUser: double.parse(
@@ -306,8 +362,10 @@ class _MtDashboardState extends State<MtDashboard> {
 
                             //___________________monthly_______________________________
                             Padding(
-                              padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                              child: NewRegisteredUser(allDay: everyDayOfCurrentMonth),
+                              padding: const EdgeInsets.only(
+                                  left: 20.0, right: 20.0),
+                              child: NewRegisteredUser(
+                                  allDay: everyDayOfCurrentMonth),
                             ),
                             const SizedBox(height: 20.0),
                           ],

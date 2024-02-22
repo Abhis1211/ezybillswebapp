@@ -1,24 +1,21 @@
+import 'dart:html';
 import 'dart:convert';
-
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_database/firebase_database.dart';
+import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
+import '../Widgets/Topbar/topbar.dart';
+import 'package:nb_utils/nb_utils.dart';
+import '../Widgets/Constant Data/constant.dart';
+import '../Widgets/Sidebar/sidebar_widget.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import '../Widgets/Constant Data/export_button.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:firebase_database/firebase_database.dart';
+import '../Widgets/Pop Up/Shop Management/edit_shop.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:nb_utils/nb_utils.dart';
+import 'package:salespro_saas_admin/model/seller_info_model.dart';
 import 'package:salespro_saas_admin/Provider/seller_info_provider.dart';
 import 'package:salespro_saas_admin/Screen/Widgets/Pop%20Up/Shop%20Management/view_shop.dart';
-import 'package:salespro_saas_admin/model/seller_info_model.dart';
-
-import '../Widgets/Constant Data/constant.dart';
-import '../Widgets/Constant Data/export_button.dart';
-import '../Widgets/Pop Up/Shop Management/edit_shop.dart';
-import '../Widgets/Sidebar/sidebar_widget.dart';
-import '../Widgets/Topbar/topbar.dart';
-import 'dart:html';
-
-import 'dart:ui' as ui;
 
 class ShopManagement extends StatefulWidget {
   const ShopManagement({Key? key}) : super(key: key);
@@ -632,6 +629,15 @@ class _ShopManagementState extends State<ShopManagement> {
         },
       ),
     );
+  }
+
+  deleteUserfirebase(String email, String password) async {
+    try {
+      return true;
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
   }
 }
 

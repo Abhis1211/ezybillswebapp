@@ -1,14 +1,14 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:salespro_saas_admin/model/user_role_model.dart';
-import '../../Provider/seller_info_provider.dart';
+import '../Widgets/Topbar/topbar.dart';
 import '../../Provider/user_role_provider.dart';
-import '../../model/user_role_under_user_model.dart';
 import '../Widgets/Constant Data/constant.dart';
 import '../Widgets/Sidebar/sidebar_widget.dart';
-import '../Widgets/Topbar/topbar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import '../../Provider/seller_info_provider.dart';
+import '../../model/user_role_under_user_model.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:salespro_saas_admin/model/user_role_model.dart';
 
 class UserRoleScreen extends StatefulWidget {
   const UserRoleScreen({Key? key}) : super(key: key);
@@ -41,7 +41,10 @@ class _UserRoleScreenState extends State<UserRoleScreen> {
                       listData.add(singleUserRole);
                     }
                   }
-                  listData.isNotEmpty ? mainShowList.add(UserRoleUnderUser(sellerInfoModel: singleSeller, userRoles: listData)) : null;
+                  listData.isNotEmpty
+                      ? mainShowList.add(UserRoleUnderUser(
+                          sellerInfoModel: singleSeller, userRoles: listData))
+                      : null;
                 }
               }
               counter++;
@@ -52,7 +55,7 @@ class _UserRoleScreenState extends State<UserRoleScreen> {
                   const SizedBox(
                     width: 240,
                     child: SideBarWidget(
-                      index: 7,
+                      index: 5,
                       isTab: false,
                     ),
                   ),
@@ -74,7 +77,9 @@ class _UserRoleScreenState extends State<UserRoleScreen> {
                             padding: const EdgeInsets.all(20.0),
                             child: Container(
                               padding: const EdgeInsets.all(10.0),
-                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0), color: kWhiteTextColor),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  color: kWhiteTextColor),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -83,7 +88,10 @@ class _UserRoleScreenState extends State<UserRoleScreen> {
                                     children: [
                                       Text(
                                         'User Role System',
-                                        style: kTextStyle.copyWith(color: kTitleColor, fontSize: 22, fontWeight: FontWeight.bold),
+                                        style: kTextStyle.copyWith(
+                                            color: kTitleColor,
+                                            fontSize: 22,
+                                            fontWeight: FontWeight.bold),
                                       ),
                                       const Spacer(),
                                       // Row(
@@ -223,18 +231,33 @@ class _UserRoleScreenState extends State<UserRoleScreen> {
                                   // ),
 
                                   Container(
-                                    decoration:  BoxDecoration(color: kLitGreyColor),
-                                    child:  Padding(
-                                      padding: EdgeInsets.only(top: 15, bottom: 15, left: 30, right: 20),
+                                    decoration:
+                                        BoxDecoration(color: kLitGreyColor),
+                                    child: Padding(
+                                      padding: EdgeInsets.only(
+                                          top: 15,
+                                          bottom: 15,
+                                          left: 30,
+                                          right: 20),
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
-                                          SizedBox(width: 50, child: Text('S.L')),
-                                          SizedBox(width: 230, child: Text('Shop Name')),
-                                          SizedBox(width: 180, child: Text('Category')),
-                                          SizedBox(width: 200, child: Text('Phone')),
-                                          SizedBox(width: 200, child: Text('Email')),
-                                          SizedBox(width: 100, child: Text('Number Of Role')),
+                                          SizedBox(
+                                              width: 50, child: Text('S.L')),
+                                          SizedBox(
+                                              width: 230,
+                                              child: Text('Shop Name')),
+                                          SizedBox(
+                                              width: 180,
+                                              child: Text('Category')),
+                                          SizedBox(
+                                              width: 200, child: Text('Phone')),
+                                          SizedBox(
+                                              width: 200, child: Text('Email')),
+                                          SizedBox(
+                                              width: 100,
+                                              child: Text('Number Of Role')),
                                         ],
                                       ),
                                     ),
@@ -245,34 +268,108 @@ class _UserRoleScreenState extends State<UserRoleScreen> {
                                     itemCount: mainShowList.length,
                                     itemBuilder: (context, index) {
                                       return Container(
-                                        decoration: const BoxDecoration(border: Border(bottom: BorderSide(width: .5, color: Colors.grey))),
+                                        decoration: const BoxDecoration(
+                                            border: Border(
+                                                bottom: BorderSide(
+                                                    width: .5,
+                                                    color: Colors.grey))),
                                         child: ExpansionTile(
                                           title: Padding(
                                             padding: const EdgeInsets.all(10.0),
                                             child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               children: [
-                                                SizedBox(width: 50, child: Text((index + 1).toString())),
-                                                SizedBox(width: 230, child: Text(mainShowList[index].sellerInfoModel.companyName.toString())),
-                                                SizedBox(width: 180, child: Text(mainShowList[index].sellerInfoModel.businessCategory.toString())),
-                                                SizedBox(width: 200, child: Text(mainShowList[index].sellerInfoModel.phoneNumber.toString())),
-                                                SizedBox(width: 200, child: Text(mainShowList[index].sellerInfoModel.email.toString())),
-                                                SizedBox(width: 50, child: Text(mainShowList[index].userRoles.length.toString())),
+                                                SizedBox(
+                                                    width: 50,
+                                                    child: Text((index + 1)
+                                                        .toString())),
+                                                SizedBox(
+                                                    width: 230,
+                                                    child: Text(
+                                                        mainShowList[index]
+                                                            .sellerInfoModel
+                                                            .companyName
+                                                            .toString())),
+                                                SizedBox(
+                                                    width: 180,
+                                                    child: Text(
+                                                        mainShowList[index]
+                                                            .sellerInfoModel
+                                                            .businessCategory
+                                                            .toString())),
+                                                SizedBox(
+                                                    width: 200,
+                                                    child: Text(
+                                                        mainShowList[index]
+                                                            .sellerInfoModel
+                                                            .phoneNumber
+                                                            .toString())),
+                                                SizedBox(
+                                                    width: 200,
+                                                    child: Text(
+                                                        mainShowList[index]
+                                                            .sellerInfoModel
+                                                            .email
+                                                            .toString())),
+                                                SizedBox(
+                                                    width: 50,
+                                                    child: Text(
+                                                        mainShowList[index]
+                                                            .userRoles
+                                                            .length
+                                                            .toString())),
                                               ],
                                             ),
                                           ),
                                           children: List.generate(
-                                            mainShowList[index].userRoles.length,
+                                            mainShowList[index]
+                                                .userRoles
+                                                .length,
                                             (i) => Padding(
-                                              padding: const EdgeInsets.only(top: 15, bottom: 15, left: 30, right: 60),
+                                              padding: const EdgeInsets.only(
+                                                  top: 15,
+                                                  bottom: 15,
+                                                  left: 30,
+                                                  right: 60),
                                               child: Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
                                                 children: [
-                                                  SizedBox(width: 50, child: Text((i + 1).toString())),
-                                                  SizedBox(width: 230, child: Text(mainShowList[index].userRoles[i].userTitle.toString())),
-                                                  SizedBox(width: 180, child: Text(mainShowList[index].sellerInfoModel.businessCategory.toString())),
-                                                  SizedBox(width: 200, child: Text(mainShowList[index].sellerInfoModel.phoneNumber.toString())),
-                                                  SizedBox(width: 200, child: Text(mainShowList[index].userRoles[i].email.toString())),
+                                                  SizedBox(
+                                                      width: 50,
+                                                      child: Text(
+                                                          (i + 1).toString())),
+                                                  SizedBox(
+                                                      width: 230,
+                                                      child: Text(
+                                                          mainShowList[index]
+                                                              .userRoles[i]
+                                                              .userTitle
+                                                              .toString())),
+                                                  SizedBox(
+                                                      width: 180,
+                                                      child: Text(
+                                                          mainShowList[index]
+                                                              .sellerInfoModel
+                                                              .businessCategory
+                                                              .toString())),
+                                                  SizedBox(
+                                                      width: 200,
+                                                      child: Text(
+                                                          mainShowList[index]
+                                                              .sellerInfoModel
+                                                              .phoneNumber
+                                                              .toString())),
+                                                  SizedBox(
+                                                      width: 200,
+                                                      child: Text(
+                                                          mainShowList[index]
+                                                              .userRoles[i]
+                                                              .email
+                                                              .toString())),
                                                   const SizedBox(width: 50
                                                       // child: PopupMenuButton(
                                                       //   icon: const Icon(FeatherIcons.moreVertical, size: 18.0),
@@ -341,10 +438,15 @@ class _UserRoleScreenState extends State<UserRoleScreen> {
   }
 }
 
-void signUp({required BuildContext context, required String email, required String password, required WidgetRef ref}) async {
+void signUp(
+    {required BuildContext context,
+    required String email,
+    required String password,
+    required WidgetRef ref}) async {
   EasyLoading.show(status: 'Registering....');
   try {
-    UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
+    UserCredential userCredential = await FirebaseAuth.instance
+        .createUserWithEmailAndPassword(email: email, password: password);
     // ignore: unnecessary_null_comparison
     if (userCredential != null) {
       EasyLoading.showSuccess('Successful');

@@ -1,20 +1,29 @@
-// ignore_for_file: unrelated_type_equality_checks
-
-import 'package:flutter/material.dart';
-import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:salespro_saas_admin/Screen/Dashboard/dashboard.dart';
-import '../../../Homepage Advertising/homepage_advertising.dart';
-import '../../Currency/currency_screen.dart';
-import '../../Payment Settings/payment_settings_screen.dart';
 import '../../Reports/reports.dart';
+import 'package:flutter/material.dart';
+import '../Constant Data/constant.dart';
+import '../../Currency/currency_screen.dart';
+import '../../User Role/user_role_screen.dart';
 import '../../Shop Category/shop_category.dart';
 import '../../Shop Management/shop_management.dart';
 import '../../Subscription Plans/subscription_plans.dart';
-import '../../User Role/user_role_screen.dart';
-import '../Constant Data/constant.dart';
+import '../../Payment Settings/payment_settings_screen.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../../../Homepage Advertising/homepage_advertising.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:salespro_saas_admin/Screen/Dashboard/dashboard.dart';
+// ignore_for_file: unrelated_type_equality_checks
 
-List<String> titleList = ['Dashboard', 'Shop List', 'Shop Category', 'Reports', 'Subscription Plans', 'Payment Settings', 'Homepage Advertising', 'User Role', 'Currency'];
+List<String> titleList = [
+  'Dashboard',
+  'Shop List',
+  'Shop Category',
+  'Reports',
+  // 'Subscription Plans',
+  // 'Payment Settings',
+  'Homepage Advertising',
+  'User Role',
+  // 'Currency'
+];
 
 String selected = 'Dashboard';
 
@@ -23,11 +32,11 @@ List<IconData> iconList = [
   Icons.home_work,
   FeatherIcons.box,
   FontAwesomeIcons.fileLines,
-  Icons.subscriptions_outlined,
-  Icons.paypal,
+  // Icons.subscriptions_outlined,
+  // Icons.paypal,
   Icons.video_settings_outlined,
   FeatherIcons.users,
-  Icons.currency_exchange
+  // Icons.currency_exchange
 ];
 
 List<String> screenList = [
@@ -35,11 +44,11 @@ List<String> screenList = [
   ShopManagement.route,
   ShopCategory.route,
   Reports.route,
-  SubscriptionPlans.route,
-  PaymentSettings.route,
+  // SubscriptionPlans.route,
+  // PaymentSettings.route,
   HomepageAdvertising.route,
   UserRoleScreen.route,
-  CurrencyScreen.route,
+  // CurrencyScreen.route,
 ];
 
 List<String> tabletScreenList = [
@@ -49,13 +58,14 @@ List<String> tabletScreenList = [
   MtDashboard.route,
   MtDashboard.route,
   MtDashboard.route,
-  PaymentSettings.route,
-  SubscriptionPlans.route,
+  // PaymentSettings.route,
+  // SubscriptionPlans.route,
   HomepageAdvertising.route,
 ];
 
 class SideBarWidget extends StatelessWidget {
-  const SideBarWidget({Key? key, required this.index, required this.isTab}) : super(key: key);
+  const SideBarWidget({Key? key, required this.index, required this.isTab})
+      : super(key: key);
   final int index;
   final bool isTab;
 
@@ -106,7 +116,10 @@ class SideBarWidget extends StatelessWidget {
                         ListTile(
                           selectedTileColor: kBlueTextColor,
                           onTap: (() {
-                            screenList[i] == Navigator.of(context).pushNamed(isTab ? tabletScreenList[i] : screenList[i]);
+                            screenList[i] ==
+                                Navigator.of(context).pushNamed(isTab
+                                    ? tabletScreenList[i]
+                                    : screenList[i]);
                             // screenList[i].launch(context);
                             selected = titleList[i];
                           }),
@@ -132,11 +145,13 @@ class SideBarWidget extends StatelessWidget {
             ),
             Text(
               shopSubTitle,
-              style: kTextStyle.copyWith(color: Colors.white, fontWeight: FontWeight.bold),
+              style: kTextStyle.copyWith(
+                  color: Colors.white, fontWeight: FontWeight.bold),
             ),
             Text(
               'Version 1.0.0',
-              style: kTextStyle.copyWith(color: Colors.white, fontWeight: FontWeight.bold),
+              style: kTextStyle.copyWith(
+                  color: Colors.white, fontWeight: FontWeight.bold),
             )
           ],
         ),
