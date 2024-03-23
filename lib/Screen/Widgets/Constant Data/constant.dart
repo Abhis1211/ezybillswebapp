@@ -3,8 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 const kAdminEmail = 'admin123@gmail.com';
 const String appTitle = 'ezyBills';
-const String shopSubTitle = 'ezyBills SAAS';
-const String appNameTitle = 'ezyBills Saas Admin';
+const String shopSubTitle = 'ezyBills';
+const String appNameTitle = 'ezyBills';
 
 // const kMainColor = Color(0xFF3F8CFF);
 const kMainColor = Color(0xFF5BB26E);
